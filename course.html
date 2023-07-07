@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Course</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230707182604">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Стилі для body preloader -->
+	<style>
+		.lock body {
+			overflow: hidden;
+			touch-action: none;
+			overscroll-behavior: none;
+		}
+
+		.loading body {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.loaded body {
+			transition: opacity 0.5s ease 0.3s;
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+	<!-- Стилі preloader -->
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+		}
+
+		/* Головний блок */
+		.fls-preloader {
+			pointer-events: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: fixed;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			overflow: hidden;
+			background: #fff;
+			z-index: 1001;
+		}
+
+		.fls-preloader__svg {
+			padding: 20px 40px;
+			flex: 1 1 auto;
+			min-width: 300px;
+			height: 100px;
+		}
+
+		.fls-preloader__elem7 {
+			fill: transparent;
+			transform: translate(-500px, 0);
+			animation: preload 0.5s ease forwards;
+		}
+
+
+		@keyframes preload {
+			0% {
+				fill: transparent;
+				transform: translate(-500px, 0);
+			}
+
+			100% {
+				fill: #FF3F3A;
+				transform: translate(0, 0);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header data-scroll class="header">
+			<div class="header__container">
+				<a href="home.html" class="header__logo">
+					<svg class="svg" width="130" height="22" viewBox="0 0 130 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g clip-path="url(#clip0_2501_1647)">
+							<path class="svg__elem1" d="M0 11.0998C0 4.9998 3.3 1.2998 8.7 1.2998C12.8 1.2998 16.1 3.7998 16.7 7.4998C16.8 7.8998 16.5 8.1998 16.1 8.1998H13.5C13.2 8.1998 13 7.9998 12.9 7.6998C12.4 5.7998 10.8 4.5998 8.7 4.5998C5.8 4.5998 4 7.0998 4 11.0998C4 15.0998 5.8 17.5998 8.8 17.5998C10.9 17.5998 12.4 16.4998 13 14.6998C13.1 14.3998 13.3 14.1998 13.6 14.1998H16.2C16.6 14.1998 16.9 14.5998 16.8 14.8998C16.2 18.4998 13 20.8998 8.8 20.8998C3.3 20.8998 0 17.0998 0 11.0998Z" fill="#1E212C" />
+							<path class="svg__elem2" d="M24.2997 20.4001H21.3997C21.0997 20.4001 20.8997 20.2001 20.8997 19.9001V2.60006C20.8997 2.20006 21.2997 1.80006 21.6997 1.80006H28.6997C32.7997 1.80006 35.2997 4.10006 35.2997 7.70006C35.2997 9.80006 34.2997 11.7001 32.5997 12.7001C32.1997 12.9001 32.0997 13.4001 32.2997 13.7001L35.3997 19.6001C35.5997 19.9001 35.2997 20.3001 34.9997 20.3001H31.6997C31.4997 20.3001 31.2997 20.2001 31.1997 20.0001L28.2997 14.0001C28.1997 13.7001 27.8997 13.6001 27.5997 13.6001H25.2997C24.9997 13.6001 24.7997 13.8001 24.7997 14.1001V20.0001C24.8997 20.2001 24.5997 20.4001 24.2997 20.4001ZM24.8997 10.2001C24.8997 10.5001 25.0997 10.7001 25.3997 10.7001H28.3997C30.3997 10.7001 31.4997 9.60006 31.4997 7.80006C31.4997 6.00006 30.2997 4.90006 28.3997 4.90006H25.4997C25.1997 4.90006 24.9997 5.10006 24.9997 5.40006V10.2001H24.8997Z" fill="#1E212C" />
+							<path class="svg__elem3" d="M51.4998 20.4001H40.4998C40.0998 20.4001 39.7998 20.1001 39.7998 19.7001V2.50006C39.7998 2.10006 40.0998 1.80006 40.4998 1.80006H51.4998C51.8998 1.80006 52.1998 2.10006 52.1998 2.50006V4.40006C52.1998 4.80006 51.8998 5.10006 51.4998 5.10006H44.1998C43.8998 5.10006 43.6998 5.30006 43.6998 5.60006V9.00006C43.6998 9.30006 43.8998 9.50006 44.1998 9.50006H50.9998C51.3998 9.50006 51.6998 9.80006 51.6998 10.2001V11.9001C51.6998 12.3001 51.3998 12.6001 50.9998 12.6001H44.1998C43.8998 12.6001 43.6998 12.8001 43.6998 13.1001V16.9001C43.6998 17.2001 43.8998 17.4001 44.1998 17.4001H51.4998C51.8998 17.4001 52.1998 17.7001 52.1998 18.1001V20.0001C52.1998 20.1001 51.8998 20.4001 51.4998 20.4001Z" fill="#1E212C" />
+							<path class="svg__elem4" d="M66.9999 15.9001H61.2999C60.9999 15.9001 60.7999 16.1001 60.6999 16.3001L59.5999 20.0001C59.4999 20.3001 59.2999 20.4001 58.9999 20.4001H56.3999C55.9999 20.4001 55.6999 20.0001 55.7999 19.6001L61.7999 2.20006C61.8999 2.00006 62.0999 1.80006 62.3999 1.80006H66.0999C66.3999 1.80006 66.5999 2.00006 66.6999 2.20006L72.6999 19.6001C72.7999 20.0001 72.4999 20.4001 72.0999 20.4001H69.1999C68.8999 20.4001 68.6999 20.2001 68.5999 20.0001L67.4999 16.3001C67.4999 16.1001 67.1999 15.9001 66.9999 15.9001ZM62.0999 13.0001H66.1999C66.3999 13.0001 66.4999 12.8001 66.4999 12.6001L64.2999 5.60006H64.0999L61.8999 12.6001C61.7999 12.8001 61.8999 13.0001 62.0999 13.0001Z" fill="#1E212C" />
+							<path class="svg__elem5" d="M79.0001 19.7005V5.50045C79.0001 5.20045 78.8001 5.00045 78.5001 5.00045H74.1001C73.7001 5.00045 73.3001 4.70045 73.3001 4.20045V2.50045C73.3001 2.10045 73.6001 1.70045 74.1001 1.70045H87.7001C88.1001 1.70045 88.5001 2.00045 88.5001 2.50045V4.20045C88.5001 4.60045 88.2001 5.00045 87.7001 5.00045H83.3001C83.0001 5.00045 82.8001 5.20045 82.8001 5.50045V19.8004C82.8001 20.2004 82.5001 20.5005 82.1001 20.5005H79.6001C79.3001 20.4004 79.0001 20.1005 79.0001 19.7005Z" fill="#1E212C" />
+							<path class="svg__elem6" d="M103.8 20.4001H92.7999C92.3999 20.4001 92.0999 20.1001 92.0999 19.7001V2.50006C92.0999 2.10006 92.3999 1.80006 92.7999 1.80006H103.8C104.2 1.80006 104.5 2.10006 104.5 2.50006V4.40006C104.5 4.80006 104.2 5.10006 103.8 5.10006H96.4999C96.1999 5.10006 95.9999 5.30006 95.9999 5.60006V9.00006C95.9999 9.30006 96.1999 9.50006 96.4999 9.50006H103.3C103.7 9.50006 104 9.80006 104 10.2001V11.9001C104 12.3001 103.7 12.6001 103.3 12.6001H96.4999C96.1999 12.6001 95.9999 12.8001 95.9999 13.1001V16.9001C95.9999 17.2001 96.1999 17.4001 96.4999 17.4001H103.8C104.2 17.4001 104.5 17.7001 104.5 18.1001V20.0001C104.5 20.1001 104.2 20.4001 103.8 20.4001Z" fill="#1E212C" />
+							<path class="svg__elem7" d="M117.7 9.7L111.5 1.6C111.1 1.2 110.6 1 110.1 1C109.6 1 109.1 1.2 108.7 1.6C108 2.4 108 3.6 108.7 4.4L113.6 11L108.7 17.6C108 18.4 108 19.6 108.7 20.4C109.1 20.8 109.6 21 110.1 21C110.6 21 111.1 20.8 111.5 20.4L117.7 12.3C118.4 11.7 118.4 10.5 117.7 9.7Z" fill="#FF3F3A" />
+							<path class="svg__elem8" d="M120.343 9.7L126.543 1.6C126.943 1.2 127.443 1 127.943 1C128.443 1 128.943 1.2 129.343 1.6C130.043 2.4 130.043 3.6 129.343 4.4L124.443 11L129.343 17.6C130.043 18.4 130.043 19.6 129.343 20.4C128.943 20.8 128.443 21 127.943 21C127.443 21 126.943 20.8 126.543 20.4L120.343 12.3C119.643 11.7 119.643 10.5 120.343 9.7Z" fill="#FF3F3A" />
+						</g>
+						<defs>
+							<clipPath id="clip0_2501_1647">
+								<rect width="130" height="22" fill="white" />
+							</clipPath>
+						</defs>
+					</svg>
+				</a>
+				<div class="header__menu menu">
+					<nav class="menu__body">
+						<ul class="menu__list">
+							<li class="menu__item">
+								<a class="menu__link" href="about.html">About Us</a>
+							</li>
+							<li class="menu__item">
+								<a class="menu__link" href="courses.html">Courses</a>
+							</li>
+							<li class="menu__item">
+								<a class="menu__link" href="events.html">Events</a>
+							</li>
+							<li class="menu__item">
+								<a class="menu__link" href="blog.html">Blog</a>
+							</li>
+							<li class="menu__item">
+								<a class="menu__link" href="contacts.html">Contacts</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions actions-header">
+					<a data-goto data-goto-header data-da=".menu__body, 768" href="contacts.html#questions" class="actions-header__button button"><span>Get
+							consultation</span></a>
+					<button data-popup="#popup-sing-in" data-da=".menu__body, 768" class="actions-header__register _icon-user"><span>Log in /
+							Register</span></button>
+				</div>
+				<button type="button" class="header__icon icon-menu"><span></span></button>
+			</div>
+		</header>
+		<main class="page">
+			<section class="page__course-main course-main-page">
+				<div class="course-main-page__container">
+					<div class="course-main-page__block-title">
+						<h3 class="course-main-page__label label label--red">course</h3>
+						<h2 class="course-main-page__title title">User Experience. Principles of Human-Centered Design
+						</h2>
+					</div>
+					<div class="course-main-page__decors decors-main-page-course">
+						<div class="decors-main-page-course__one"></div>
+						<div class="decors-main-page-course__two"></div>
+						<div class="decors-main-page-course__three"></div>
+						<div class="decors-main-page-course__four"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__about-course course-about">
+				<div class="course-about__container">
+					<div class="course-about__content">
+						<h2 data-watch-once data-watch class="course-about__title">About the course</h2>
+						<p class="course-about__text">Bibendum vulputate adipiscing venenatis at est, a eu tincidunt.
+							Leo
+							aenean congue in sagittis, felis maecenas amet varius at. Pellentesque euismod in faucibus
+							at
+							elementum. Tellus maecenas libero est tempus sit cras at malesuada diam. Consequat senectus
+							dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh
+							vel
+							lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque
+						</p>
+						<h3 class="course-about__list-title">You will learn:</h3>
+						<ul class="course-about__list">
+							<li data-watch-once data-watch>A fermentum in morbi pretium aliquam adipiscing donec tempus.</li>
+							<li data-watch-once data-watch>Vulputate placerat amet pulvinar lorem nisl.</li>
+							<li data-watch-once data-watch>Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.</li>
+							<li data-watch-once data-watch>Etiam duis lobortis in fames ultrices commodo nibh.</li>
+							<li data-watch-once data-watch>Fringilla in nec risus congue venenatis pretium posuere nec.</li>
+							<li data-watch-once data-watch>Cursus eu pretium, vulputate tempus quam massa sed at.</li>
+						</ul>
+					</div>
+					<article class="course-about__descriptions descriptions-course">
+						<div class="descriptions-course__detes dates-course">
+							<h6 class="dates-course__label">Dates</h6>
+							<div class="dates-course__data">Sept 7 - Nov 2</div>
+							<p class="dates-course__text">Metus turpis sit lorem lacus, in elit tellus lacus.</p>
+						</div>
+						<div class="descriptions-course__duration duration-course">
+							<h6 class="duration-course__label">Duration</h6>
+							<div class="duration-course__lessons">2 months - 8 lessons</div>
+							<p class="duration-course__text">Rhoncus pellentesque auctor auctor orci vulputate faucibus
+								quis
+								ut.</p>
+						</div>
+						<div class="descriptions-course__price price-course">
+							<h6 class="price-course__label">Price</h6>
+							<div class="price-course__lessons">$120 per month</div>
+							<p class="price-course__text">Nulla sem adipiscing adipiscing felis fringilla. Adipiscing
+								mauris
+								quam ac elit tristique dis.</p>
+						</div>
+						<button data-goto=".registercourse-page" type="button" class="descriptions-course__button button button--small"><span>Join the
+								course</span></button>
+					</article>
+				</div>
+			</section>
+
+			<section class="page__curator curator-page">
+				<div class="curator-page__container">
+					<div class="curator-page__decor">
+						<div class="curator-page__image">
+							<picture><source srcset="img/team/curator_8.webp" type="image/webp"><img src="img/team/curator_8.png" alt="curator"></picture>
+						</div>
+					</div>
+					<div class="curator-page__content">
+						<div class="curator-page__header">
+							<div class="curator-page__block-title">
+								<h3 data-watch-once data-watch class="curator-page__label label">Course curator</h3>
+								<h2 data-watch-once data-watch class="curator-page__title title">Cody Fisher</h2>
+							</div>
+							<div class="curator-page__position">Senior UX designer in IT Product Company</div>
+						</div>
+
+						<div class="curator-page__benefits benefits-curator">
+							<ul class="benefits-curator__list">
+								<li class="_icon-star">4.9 rate</li>
+								<li class="_icon-play">4 courses</li>
+								<li class="_icon-user">350 students</li>
+							</ul>
+						</div>
+						<p class="curator-page__text">Mattis adipiscing aliquam eu proin metus a iaculis faucibus.
+							Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper
+							quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel
+							diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse
+							proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum
+							quam.
+
+						</p>
+						<div class="curator-page__social social-curator">
+							<a href="#" class="social-curator__link _icon-facebook"></a>
+							<a href="#" class="social-curator__link _icon-be"></a>
+							<a href="#" class="social-curator__link _icon-twitter"></a>
+							<a href="#" class="social-curator__link _icon-in"></a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__process process-page">
+				<div class="process-page__container">
+					<div class="process-page__block-title">
+						<h3 class="process-page__label label">Main steps</h3>
+						<h2 class="process-page__title title">Online learning process</h2>
+					</div>
+					<div class="process-page__processes">
+						<div data-watch-once data-watch class="process-page__process item-processe">
+							<div class="item-processe__step">01</div>
+
+							<h6 class="item-processe__title">Watching online
+								video lectures</h6>
+							<p class="item-processe__text">Culpa nostrud commodo ea consequat aliquip reprehenderit.
+								Veniam velit nostrud aliquip sunt.</p>
+						</div>
+
+						<div data-watch-once data-watch class="process-page__process item-processe">
+							<div class="item-processe__step">02</div>
+
+							<h6 class="item-processe__title">Passing test</h6>
+							<p class="item-processe__text">Anim reprehenderit sint voluptate exercitation
+								adipisicing
+								laborum adipisicing. Minim ad tempor est ea.</p>
+						</div>
+						<div data-watch-once data-watch class="process-page__process item-processe">
+							<div class="item-processe__step">03</div>
+
+							<h6 class="item-processe__title">Curator's feedback</h6>
+							<p class="item-processe__text">Adipisicing esse aliqua aliquip qui amet. Aute eiusmod
+								dolore
+								dolore et ad et veniam ad deserunt.</p>
+						</div>
+
+						<div data-watch-once data-watch class="process-page__process item-processe">
+							<div class="item-processe__step item-processe__step--active"><span> 04</span></div>
+
+							<h6 class="item-processe__title">Corrections if needed</h6>
+							<p class="item-processe__text">Sit veniam aute dolore adipisicing nulla sit culpa. Minim
+								mollit voluptate ullamco proident ea ad.</p>
+
+						</div>
+					</div>
+					<div class="process-page__decor"></div>
+				</div>
+			</section>
+
+			<section class="page__discount discount-page">
+				<div class="discount-page__container">
+					<div class="discount-page__content">
+						<div class="discount-page__header">
+							<h2 data-watch-once data-watch class="discount-page__title">20% discount for early birds!</h2>
+							<div class="discount-page__timer timer">
+								<div class="timer__items">
+									<div class="timer__item timer__days">00</div>
+									<div class="timer__item timer__hours">00</div>
+									<div class="timer__item timer__minutes">00</div>
+									<div class="timer__item timer__seconds">00</div>
+								</div>
+							</div>
+						</div>
+						<form action="#" class="discount-page__form form-discount">
+							<div class="form-discount__line">
+								<label for="name-discount" class="form-discount__label">Full name</label>
+								<input class="form-discount__input" id="name-discount" required type="text" name="name" placeholder="your full name">
+							</div>
+							<div class="form-discount__line">
+								<label for="email-discount" class="form-discount__label">Email</label>
+								<input class="form-discount__input" id="email-discount" autocomplete="off" required type="email" name="e-mail" placeholder="Your working email">
+							</div>
+							<div class="form-discount__line">
+								<label for="phone-discount" class="form-discount__label">Phone</label>
+								<input class="form-discount__input" id="phone-discount" autocomplete="off" type="tel" name="phone" placeholder="Your phone number">
+							</div>
+							<div class="form-discount__line">
+								<button type="submit" class="form-discount__button button button--small"><span>Join the
+										course</span></button>
+							</div>
+						</form>
+						<div class="discount-page__decor"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__whom whom-page">
+				<div class="whom-page__container">
+					<div class="whom-page__block-title">
+						<h3 class="whom-page__label label">For whom?</h3>
+						<h2 class="whom-page__title title">Who will benefit from the course:</h2>
+					</div>
+					<ul class="whom-page__list">
+						<li data-watch-once data-watch>Specialists with more than 1 year of active work experience</li>
+						<li data-watch-once data-watch>Mobile app designers who want to improve their skills in solving business problems, creating
+							and testing human-centered interfaces</li>
+						<li data-watch-once data-watch>Professional designers who want to feel more confident in UX</li>
+						<li data-watch-once data-watch>Specialists who would like to structure their knowledge, fill in the gaps</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="page__program program-page">
+				<div class="program-page__container">
+					<div class="program-page__content">
+						<div class="program-page__block-title">
+							<h3 data-watch-once data-watch class="program-page__label label">Course program</h3>
+							<h2 data-watch-once data-watch class="program-page__title title">What will you learn</h2>
+						</div>
+						<div data-spollers class="program-page__spollers spollers-program">
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										1.</span> Aliquet lectus urna viverra in odio.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit. Elit
+									lectus nec pulvinar aliquet donec
+									enim, ornare. Lacus facilisi curabitur
+									turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus
+									porttitor quis sem lacus, arcu
+									feugiat facilisis. Commodo nunc orci vitae accumsan id.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										2.</span> Orci commodo,
+									viverra orci mollis ut euismod.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit. Elit
+									lectus nec pulvinar aliquet donec
+									enim, ornare.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										3.</span> Sagittis vitae facilisi rutrum amet mauris quisque vel.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										4.</span> In id dolor quis nunc, urna hendrerit pharetra.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit. Elit
+									lectus nec pulvinar aliquet donec
+									enim, ornare.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										5.</span> Est, ut tempus id rutrum facilisi.</button>
+								<div class="spollers-program__body">Elit lectus nec pulvinar aliquet donec
+									enim, ornare.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										6.</span> Amet nec in pellentesque.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit. Elit
+									lectus nec pulvinar aliquet donec
+									enim, ornare. Lacus facilisi curabitur
+									turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus
+									porttitor quis sem lacus, arcu
+									feugiat facilisis. Commodo nunc orci vitae accumsan id.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										7.</span> Massa vel arcu mauris, id vel rhoncus mattis quis.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit. Elit
+									lectus nec pulvinar aliquet donec
+									enim, ornare. Lacus facilisi curabitur
+									turpis varius mauris.</div>
+							</div>
+							<div class="spollers-program__item">
+								<button type="button" data-spoller class="spollers-program__title"><span>Lesson
+										8.</span> Neque, cursus sapien nullam id.</button>
+								<div class="spollers-program__body">Nulla amet, sagittis potenti rhoncus sit. Elit
+									lectus nec pulvinar aliquet donec
+									enim, ornare. Lacus facilisi curabitur
+									turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus
+									porttitor quis sem lacus, arcu
+									feugiat facilisis.</div>
+							</div>
+						</div>
+					</div>
+					<div class="program-page__image">
+						<img src="img/program_course.svg" alt="Image">
+					</div>
+				</div>
+			</section>
+
+			<section class="reviews-page">
+				<div class="reviews-page__container">
+					<div class="reviews-page__header">
+						<div class="reviews-page__block-title">
+							<h3 class="reviews-page__label label">TESTIMONIALS</h3>
+							<h2 class="reviews-page__title title">What our students say</h2>
+						</div>
+					</div>
+				</div>
+				<div class="reviews-page__container-slider">
+					<div class="reviews-page__slider swiper">
+						<div class="reviews-page__wrapper swiper-wrapper">
+							<div class="reviews-page__slide swiper-slide">
+								<div class="item-reviews">
+									<div class="item-reviews__content _icon-braces">
+										<blockquote class="item-reviews__text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, amet lectus
+											quam viverra mus lobortis fermentum amet, eu. Pulvinar eu sed purus
+											facilisi. Vitae id turpis tempus ornare turpis quis non. Congue tortor in
+											euismod vulputate etiam eros. Pulvinar neque pharetra arcu diam maecenas
+											diam integer in.
+										</blockquote>
+										<div class="item-reviews__student student">
+											<div class="student__avatar">
+												<picture><source srcset="img/avatar/avatar1.webp" type="image/webp"><img src="img/avatar/avatar1.jpg" alt="avatar"></picture>
+											</div>
+											<div class="student__description">
+												<div class="student__name">Eleanor Pena</div>
+												<div class="student__position">Position, Course</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="reviews-page__slide swiper-slide">
+								<div class="item-reviews">
+									<div class="item-reviews__content _icon-braces">
+										<blockquote class="item-reviews__text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, amet lectus
+											quam viverra mus lobortis fermentum amet, eu. Pulvinar eu sed purus
+											facilisi. Vitae id turpis tempus ornare turpis quis non. Congue tortor in
+											euismod vulputate etiam eros. Pulvinar neque pharetra arcu diam maecenas
+											diam integer in.
+										</blockquote>
+										<div class="item-reviews__student student">
+											<div class="student__avatar">
+												<picture><source srcset="img/avatar/avatar2.webp" type="image/webp"><img src="img/avatar/avatar2.png" alt="avatar"></picture>
+											</div>
+											<div class="student__description">
+												<div class="student__name">Jerome Hender</div>
+												<div class="student__position">Position, Course</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="reviews-page__slide swiper-slide">
+								<div class="item-reviews">
+									<div class="item-reviews__content _icon-braces">
+										<blockquote class="item-reviews__text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, amet lectus
+											quam viverra mus lobortis fermentum amet, eu. Pulvinar eu sed purus
+											facilisi. Vitae id turpis tempus ornare turpis quis non. Congue tortor in
+											euismod vulputate etiam eros. Pulvinar neque pharetra arcu diam maecenas
+											diam integer in.
+										</blockquote>
+										<div class="item-reviews__student student">
+											<div class="student__avatar">
+												<picture><source srcset="img/avatar/avatar3.webp" type="image/webp"><img src="img/avatar/avatar3.png" alt="avatar"></picture>
+											</div>
+											<div class="student__description">
+												<div class="student__name">Jerome Hender</div>
+												<div class="student__position">Position, Course</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="reviews-page__slide swiper-slide">
+								<div class="item-reviews">
+									<div class="item-reviews__content _icon-braces">
+										<blockquote class="item-reviews__text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, amet lectus
+											quam viverra mus lobortis fermentum amet, eu. Pulvinar eu sed purus
+											facilisi. Vitae id turpis tempus ornare turpis quis non. Congue tortor in
+											euismod vulputate etiam eros. Pulvinar neque pharetra arcu diam maecenas
+											diam integer in.
+										</blockquote>
+										<div class="item-reviews__student student">
+											<div class="student__avatar">
+												<picture><source srcset="img/avatar/avatar3.webp" type="image/webp"><img src="img/avatar/avatar3.png" alt="avatar"></picture>
+											</div>
+											<div class="student__description">
+												<div class="student__name">Juli Brash</div>
+												<div class="student__position">Position, Course</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+						<div data-da=".reviews-page__header, 991.98" class="reviews-page__controls">
+							<button type="button" class="reviews-page__arrow reviews-page__arrow--left arrow _icon-arr-line"></button>
+							<button type="button" class="reviews-page__arrow reviews-page__arrow--right arrow _icon-arr-line"></button>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+				<div class="reviews-page__container">
+					<div class="reviews-page__decors decor-reviews">
+						<div data-watch-once data-watch class="decor-reviews__one"></div>
+						<div data-watch-once data-watch class="decor-reviews__two"></div>
+						<div data-watch-once data-watch class="decor-reviews__three"></div>
+						<div data-watch-once data-watch class="decor-reviews__four"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__registercourse registercourse-page">
+				<div class="registercourse-page__container">
+					<div class="registercourse-page__image">
+						<img src="img/illustration.svg" alt="img">
+					</div>
+					<div class="registercourse-page__content">
+						<div class="registercourse-page__block-title">
+							<h3 data-watch-once data-watch class="registercourse-page__label label">Leave a request now and get 20% off!</h3>
+							<h2 data-watch-once data-watch class="registercourse-page__title title">Register for the course</h2>
+						</div>
+						<form action="#" class="registercourse-page__form form-registercourse">
+							<div class="form-registercourse__line">
+								<label for="name-register" class="form-registercourse__label">Full name</label>
+								<input class="form-registercourse__input" id="name-register" required type="text" name="name" placeholder="your full name">
+							</div>
+							<div class="form-registercourse__line">
+								<label for="email-register" class="form-registercourse__label">Email</label>
+								<input class="form-registercourse__input" id="email-register" autocomplete="off" required type="email" name="e-mail" placeholder="Your working email">
+							</div>
+							<div class="form-registercourse__line">
+								<label for="phone-register" class="form-registercourse__label">Phone</label>
+								<input class="form-registercourse__input" id="phone-register" autocomplete="off" type="tel" name="phone" placeholder="Your phone number">
+							</div>
+							<div class="form-registercourse__line">
+								<button type="submit" class="form-registercourse__button button"><span>Join the
+										course</span></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__top">
+				<div class="footer__container-main">
+					<div class="footer__body">
+						<a href="#" class="footer__logo"><img src="img/footer_logo.svg" alt="logo"></a>
+						<div class="footer__text">Createx Online School is a leader in online studying. We have lots of courses
+							and programs from the main market experts. We provide relevant approaches to online learning,
+							internships and employment in the largest companies in the country.</div>
+						<ul class="footer__social social-main">
+							<li class="social-main__item"><a href="#" target="_blank" class="social-main__link social-main__link--fb _icon-facebook"></a>
+							</li>
+							<li class="social-main__item"><a href="#" target="_blank" class="social-main__link social-main__link--twitter _icon-twitter"></a>
+							</li>
+							<li class="social-main__item"><a href="#" target="_blank" class="social-main__link social-main__link--youtube _icon-yotube"></a>
+							</li>
+							<li class="social-main__item"><a href="#" target="_blank" class="social-main__link social-main__link--tg _icon-telegram">
+								</a></li>
+							<li class="social-main__item"><a href="#" target="_blank" class="social-main__link social-main__link--inst _icon-instagram"></a>
+							</li>
+							<li class="social-main__item"><a href="#" target="_blank" class="social-main__link social-main__link--in _icon-in"></a>
+							</li>
+						</ul>
+					</div>
+					<div data-spollers="767.98,max" class="footer__menu menu-footer">
+						<div class="menu-footer__column">
+							<button type="button" data-spoller class="footer__label _footer-label">SITE MAP</button>
+							<nav class="menu-footer">
+								<ul class="menu-footer__list">
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">About Us</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Courses</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Events</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Blog</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Contacts</a></li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="menu-footer__column">
+							<button type="button" data-spoller class="footer__label _footer-label">COURSES</button>
+							<nav class="menu-footer">
+								<ul class="menu-footer__list">
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Marketing</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Management</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">HR & Recruting</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Design</a></li>
+									<li class="menu-footer__item"><a href="#" class="menu-footer__link">Development</a></li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="menu-footer__column">
+							<button type="button" data-spoller class="footer__label _footer-label">CONTACT
+								US</button>
+							<nav class="menu-footer">
+								<ul>
+									<li class="menu-footer__item"><a class="menu-footer__phone _icon-phone" href="tel:4055550128">(405) 555-0128</a></li>
+									<li class="menu-footer__item"><a class="menu-footer__email _icon-letter" href="mailto:hello@createx.com">hello@createx.com</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+
+					<div class="footer__subscribe">
+						<div class="footer__label">SIGN UP TO OUR NEWSLETTER</div>
+						<form action="#" class="footer__form form-footer">
+							<div class="form-footer__line">
+								<input class="form-footer__input" id="mail" required autocomplete="off" type="email" name="e-mail" placeholder="Email address">
+							</div>
+							<button type="submit" class="form-footer__button _icon-arr-line"></button>
+						</form>
+						<div class="footer__text-form">*Subscribe to our newsletter to receive communications and early
+							updates from Createx SEO Agency.</div>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="footer__bottom bottom-footer">
+				<div class="bottom-footer__container">
+					<div class="bottom-footer__text">© All rights reserved. Made with <span class="_icon-Vector-Stroke"> by
+							Createx
+							Studio</span>
+					</div>
+					<a href="#" class="bottom-footer__link-top">GO TO TOP</a>
+
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- Popup sing-in -->
+
+	<div id="popup-sing-in" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close _icon-cross"></button>
+				<div class="popup__text">
+					<h2 class="popup__title">Sign in</h2>
+					<div class="popup__description">Sign in to your account using email and password provided during
+						registration.</div>
+					<form action="#" class="popup__form form-popup">
+						<div class="form-popup__line">
+							<label for="email-3" class="form-popup__label">Email</label>
+							<input class="form-popup__input" id="email-3" autocomplete="off" type="email" required name="email" placeholder="Your working email">
+						</div>
+						<div class="form-popup__line">
+							<label for="password" class="form-popup__label">Password</label>
+							<input class="form-popup__input" id="password" required autocomplete="off" type="password" name="e-mail" placeholder="Your password">
+							<button type="button" class="form-popup__viewpass _icon-eye-open"></button>
+						</div>
+						<div class="form-popup__topassword">
+							<div class="form-popup__checkbox checkbox">
+								<input id="keep" type="checkbox" checked value="yes" name="keep" class="checkbox__input">
+								<label for="keep" class="checkbox__label"><span class="checkbox__text">Keep me signed
+										in</span></label>
+							</div>
+							<a href="#" class="form-popup__forgotpass">Forgot password?</a>
+						</div>
+
+						<button type="submit" class="form-popup__button button"><span>Sign in</span></button>
+					</form>
+
+					<div class="popup__singup-text">Don't have an
+						account? <button data-popup="#sing-up" class="popup__link-singup">
+							Sign up</button>
+					</div>
+
+					<div class="popup__footer footer-popup">
+						<div class="footer-popup__content">
+							<div class="footer-popup__label">
+								Or sign in with
+							</div>
+							<div class="footer-popup__social social-popup">
+								<ul class="social-popup__list">
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-facebook"></a>
+									</li>
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-google"></a>
+									</li>
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-twitter"></a>
+									</li>
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-in"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Popup sing-up -->
+	<div id="sing-up" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">X</button>
+				<div class="popup__text">
+					<div class="popup__title">Sign up</div>
+
+					<div class="popup__description">Registration takes less than a minute but gives you full control over
+						your studying.
+					</div>
+					<form action="#" class="popup__form form-popup">
+						<div class="form-popup__line">
+							<label for="name" class="form-popup__label">Full Name</label>
+							<input class="form-popup__input" id="name" autocomplete="off" type="text" required name="email" placeholder="Your full name">
+						</div>
+						<div class="form-popup__line">
+							<label for="email-2" class="form-popup__label">Email</label>
+							<input class="form-popup__input" id="email-2" autocomplete="off" type="email" required name="email" placeholder="Your working email">
+						</div>
+						<div class="form-popup__line">
+							<label for="password-2" class="form-popup__label">Password</label>
+							<input class="form-popup__input" id="password-2" required autocomplete="off" type="password" name="password" placeholder="Your password">
+							<button type="button" class="form-popup__viewpass"></button>
+						</div>
+						<div class="form-popup__line">
+							<label for="confirm_password" class="form-popup__label">Password</label>
+							<input class="form-popup__input" id="confirm_password" required autocomplete="off" type="password" name="confirm_password" placeholder="Confirm your password">
+							<button type="button" class="form-popup__viewpass _icon-eye-open"></button>
+						</div>
+						<div class="form-popup__checkbox checkbox">
+							<input id="remember" type="checkbox" checked value="yes" name="remember" class="checkbox__input">
+							<label for="remember" class="checkbox__label"><span class="checkbox__text">Remember
+									me</span></label>
+						</div>
+
+						<button type="submit" class="form-popup__button button"><span>Sign up</span></button>
+					</form>
+
+					<div class="popup__singup-text">Already have an account? <button data-popup="#popup-sing-in" class="popup__link-singup">
+							Sign in</button>
+					</div>
+
+					<div class="popup__footer footer-popup">
+						<div class="footer-popup__content">
+							<div class="footer-popup__label">
+								Or sign in with
+							</div>
+							<div class="footer-popup__social social-popup">
+								<ul class="social-popup__list">
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-facebook"></a>
+									</li>
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-google"></a>
+									</li>
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-twitter"></a>
+									</li>
+									<li class="social-popup__item"><a href="#" class="social-popup__link _icon-in"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="fls-preloader">
+		<!-- Скріпт прелоадера -->
+		<script>
+			function preloader() {
+				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
+				const preloaderContainer = document.querySelector('#fls-preloader');
+				if (preloaderImages.length) {
+					const preloaderTemplate = `
+					<div class="fls-preloader">
+							<svg class="fls-preloader__svg" width="130" height="22" viewBox="0 0 130 22" fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_2501_1647)">
+							<path class="fls-preloader__elem1"
+							d="M0 11.0998C0 4.9998 3.3 1.2998 8.7 1.2998C12.8 1.2998 16.1 3.7998 16.7 7.4998C16.8 7.8998 16.5 8.1998 16.1 8.1998H13.5C13.2 8.1998 13 7.9998 12.9 7.6998C12.4 5.7998 10.8 4.5998 8.7 4.5998C5.8 4.5998 4 7.0998 4 11.0998C4 15.0998 5.8 17.5998 8.8 17.5998C10.9 17.5998 12.4 16.4998 13 14.6998C13.1 14.3998 13.3 14.1998 13.6 14.1998H16.2C16.6 14.1998 16.9 14.5998 16.8 14.8998C16.2 18.4998 13 20.8998 8.8 20.8998C3.3 20.8998 0 17.0998 0 11.0998Z"
+							fill="#1E212C" />
+							<path class="fls-preloader__elem2"
+							d="M24.2997 20.4001H21.3997C21.0997 20.4001 20.8997 20.2001 20.8997 19.9001V2.60006C20.8997 2.20006 21.2997 1.80006 21.6997 1.80006H28.6997C32.7997 1.80006 35.2997 4.10006 35.2997 7.70006C35.2997 9.80006 34.2997 11.7001 32.5997 12.7001C32.1997 12.9001 32.0997 13.4001 32.2997 13.7001L35.3997 19.6001C35.5997 19.9001 35.2997 20.3001 34.9997 20.3001H31.6997C31.4997 20.3001 31.2997 20.2001 31.1997 20.0001L28.2997 14.0001C28.1997 13.7001 27.8997 13.6001 27.5997 13.6001H25.2997C24.9997 13.6001 24.7997 13.8001 24.7997 14.1001V20.0001C24.8997 20.2001 24.5997 20.4001 24.2997 20.4001ZM24.8997 10.2001C24.8997 10.5001 25.0997 10.7001 25.3997 10.7001H28.3997C30.3997 10.7001 31.4997 9.60006 31.4997 7.80006C31.4997 6.00006 30.2997 4.90006 28.3997 4.90006H25.4997C25.1997 4.90006 24.9997 5.10006 24.9997 5.40006V10.2001H24.8997Z"
+							fill="#1E212C" />
+							<path class="fls-preloader__elem3"
+							d="M51.4998 20.4001H40.4998C40.0998 20.4001 39.7998 20.1001 39.7998 19.7001V2.50006C39.7998 2.10006 40.0998 1.80006 40.4998 1.80006H51.4998C51.8998 1.80006 52.1998 2.10006 52.1998 2.50006V4.40006C52.1998 4.80006 51.8998 5.10006 51.4998 5.10006H44.1998C43.8998 5.10006 43.6998 5.30006 43.6998 5.60006V9.00006C43.6998 9.30006 43.8998 9.50006 44.1998 9.50006H50.9998C51.3998 9.50006 51.6998 9.80006 51.6998 10.2001V11.9001C51.6998 12.3001 51.3998 12.6001 50.9998 12.6001H44.1998C43.8998 12.6001 43.6998 12.8001 43.6998 13.1001V16.9001C43.6998 17.2001 43.8998 17.4001 44.1998 17.4001H51.4998C51.8998 17.4001 52.1998 17.7001 52.1998 18.1001V20.0001C52.1998 20.1001 51.8998 20.4001 51.4998 20.4001Z"
+							fill="#1E212C" />
+							<path class="fls-preloader__elem4"
+							d="M66.9999 15.9001H61.2999C60.9999 15.9001 60.7999 16.1001 60.6999 16.3001L59.5999 20.0001C59.4999 20.3001 59.2999 20.4001 58.9999 20.4001H56.3999C55.9999 20.4001 55.6999 20.0001 55.7999 19.6001L61.7999 2.20006C61.8999 2.00006 62.0999 1.80006 62.3999 1.80006H66.0999C66.3999 1.80006 66.5999 2.00006 66.6999 2.20006L72.6999 19.6001C72.7999 20.0001 72.4999 20.4001 72.0999 20.4001H69.1999C68.8999 20.4001 68.6999 20.2001 68.5999 20.0001L67.4999 16.3001C67.4999 16.1001 67.1999 15.9001 66.9999 15.9001ZM62.0999 13.0001H66.1999C66.3999 13.0001 66.4999 12.8001 66.4999 12.6001L64.2999 5.60006H64.0999L61.8999 12.6001C61.7999 12.8001 61.8999 13.0001 62.0999 13.0001Z"
+							fill="#1E212C" />
+							<path class="fls-preloader__elem5"
+							d="M79.0001 19.7005V5.50045C79.0001 5.20045 78.8001 5.00045 78.5001 5.00045H74.1001C73.7001 5.00045 73.3001 4.70045 73.3001 4.20045V2.50045C73.3001 2.10045 73.6001 1.70045 74.1001 1.70045H87.7001C88.1001 1.70045 88.5001 2.00045 88.5001 2.50045V4.20045C88.5001 4.60045 88.2001 5.00045 87.7001 5.00045H83.3001C83.0001 5.00045 82.8001 5.20045 82.8001 5.50045V19.8004C82.8001 20.2004 82.5001 20.5005 82.1001 20.5005H79.6001C79.3001 20.4004 79.0001 20.1005 79.0001 19.7005Z"
+							fill="#1E212C" />
+							<path class="fls-preloader__elem6"
+							d="M103.8 20.4001H92.7999C92.3999 20.4001 92.0999 20.1001 92.0999 19.7001V2.50006C92.0999 2.10006 92.3999 1.80006 92.7999 1.80006H103.8C104.2 1.80006 104.5 2.10006 104.5 2.50006V4.40006C104.5 4.80006 104.2 5.10006 103.8 5.10006H96.4999C96.1999 5.10006 95.9999 5.30006 95.9999 5.60006V9.00006C95.9999 9.30006 96.1999 9.50006 96.4999 9.50006H103.3C103.7 9.50006 104 9.80006 104 10.2001V11.9001C104 12.3001 103.7 12.6001 103.3 12.6001H96.4999C96.1999 12.6001 95.9999 12.8001 95.9999 13.1001V16.9001C95.9999 17.2001 96.1999 17.4001 96.4999 17.4001H103.8C104.2 17.4001 104.5 17.7001 104.5 18.1001V20.0001C104.5 20.1001 104.2 20.4001 103.8 20.4001Z"
+							fill="#1E212C" />
+							<path class="fls-preloader__elem7"
+							d="M117.7 9.7L111.5 1.6C111.1 1.2 110.6 1 110.1 1C109.6 1 109.1 1.2 108.7 1.6C108 2.4 108 3.6 108.7 4.4L113.6 11L108.7 17.6C108 18.4 108 19.6 108.7 20.4C109.1 20.8 109.6 21 110.1 21C110.6 21 111.1 20.8 111.5 20.4L117.7 12.3C118.4 11.7 118.4 10.5 117.7 9.7Z"
+							fill="#FF3F3A" />
+							<path class="fls-preloader__elem8"
+							d="M120.343 9.7L126.543 1.6C126.943 1.2 127.443 1 127.943 1C128.443 1 128.943 1.2 129.343 1.6C130.043 2.4 130.043 3.6 129.343 4.4L124.443 11L129.343 17.6C130.043 18.4 130.043 19.6 129.343 20.4C128.943 20.8 128.443 21 127.943 21C127.443 21 126.943 20.8 126.543 20.4L120.343 12.3C119.643 11.7 119.643 10.5 120.343 9.7Z"
+							fill="#FF3F3A" />
+							</g>
+							<defs>
+							<clipPath id="clip0_2501_1647">
+							<rect width="130" height="22" fill="white" />
+							</clipPath>
+							</defs>
+						</svg>
+					
+					</div>`;
+					document.querySelector('html').insertAdjacentHTML("beforeend", preloaderTemplate);
+
+					const
+						preloader = document.querySelector('.fls-preloader'),
+						showPecentLoad = document.querySelector('.fls-preloader__counter'),
+						showLineLoad = document.querySelector('.fls-preloader__line span'),
+						htmlDocument = document.documentElement;
+
+					let imagesLoadedCount = counter = progress = 0;
+
+					htmlDocument.classList.add('loading');
+					htmlDocument.classList.add('lock');
+
+					preloaderImages.forEach(preloaderImage => {
+						const imgClone = document.createElement('img');
+						if (imgClone) {
+							imgClone.onload = imageLoaded;
+							imgClone.onerror = imageLoaded;
+							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+						}
+					});
+
+					function setValueProgress(progress) {
+						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
+						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					}
+					showPecentLoad ? setValueProgress(progress) : null;
+
+					function imageLoaded() {
+						imagesLoadedCount++;
+						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+						const intervalId = setInterval(() => {
+							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
+							counter >= 100 ? addLoadedClass() : null;
+						}, 10);
+					}
+
+					function addLoadedClass() {
+						htmlDocument.classList.add('loaded');
+						htmlDocument.classList.remove('lock');
+						htmlDocument.classList.remove('loading');
+						setInterval(() => {
+							preloader.remove();
+							preloaderContainer.remove();
+						}, 500);
+					}
+				} else {
+					preloaderContainer.remove();
+				}
+			}
+			preloader();
+		</script>
+	</div>
+	<script src="js/app.min.js?_v=20230707182604"></script>
+</body>
+
+</html>

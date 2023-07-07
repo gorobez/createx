@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Online course</title>
+	<style>
+		@import url("https://fonts.googleapis.com/css?family=Montserrat:regular,700&display=swap");
+
+		*,
+		*::before,
+		*::after {
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			min-width: 320px;
+			width: 100%;
+			color: #1E212C;
+			background: linear-gradient(55.95deg, #ff403a31 0%, #f75e0539 100%);
+		}
+
+		body {
+			font-family: Montserrat;
+			font-size: 100%;
+			line-height: 1;
+			font-size: 1rem;
+		}
+
+		a {
+			text-decoration: underline;
+			color: #1E212C;
+		}
+
+		a:visited {
+			text-decoration: underline;
+			color: #aaa768;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		ul li {
+			list-style: none;
+		}
+
+		.wrapper {
+			width: 100%;
+			min-height: 100%;
+			overflow: hidden;
+		}
+
+		.rootpage {
+			padding: 30px;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		img {
+			margin-bottom: 30px;
+		}
+
+		@media (max-width: 767px) {
+			.rootpage {
+				padding: 30px 15px;
+			}
+		}
+
+		h1 {
+			color: #1E212C;
+			font-size: 2.5rem;
+			margin: 0px 0px 1.25rem 0px;
+		}
+
+		@media (max-width: 767px) {
+			h1 {
+				font-size: 1.85rem;
+				margin: 0px 0px 1.25rem 0px;
+			}
+		}
+
+		h2 {
+			color: #1E212C;
+			font-size: 1.25rem;
+			margin: 0px 0px 1rem 0px;
+		}
+
+		@media (max-width: 767px) {
+			h2 {
+				font-size: 1.125rem;
+				margin: 0px 0px 1rem 0px;
+			}
+		}
+
+		.rootpage__info {
+			line-height: 140%;
+			margin: 0px 0px 1.5rem 0px;
+		}
+
+		.rootpage__list {
+			margin: 0px 0px 2.25rem 1.25rem;
+		}
+
+		.rootpage__list li:not(:last-child) {
+			margin: 0px 0px 15px 0px;
+		}
+
+		.rootpage__contacts,
+		.rootpage__tnx {
+			border-radius: 200px;
+			padding: 20px 65px;
+			line-height: 140%;
+		}
+
+		@media (max-width: 767px) {
+
+			.rootpage__contacts,
+			.rootpage__tnx {
+				border-radius: 40px;
+				padding: 20px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="rootpage">
+		<h1>Online course</h1>
+		<img src="img/logo.svg" alt="logo">
+		<h2>Pages:</h2>
+		<ol class="rootpage__list">
+			<li><a target="_blank" href="home.html">Home</a></li>
+			<li><a target="_blank" href="courses.html">Courses</a></li>
+			<li><a target="_blank" href="course.html">Course</a></li>
+			<li><a target="_blank" href="events.html">Events</a></li>
+			<li><a target="_blank" href="event.html">Event</a></li>
+			<li><a target="_blank" href="about.html">About</a></li>
+			<li><a target="_blank" href="blog.html">Blog</a></li>
+			<li><a target="_blank" href="singlepost.html">Single post</a>
+			<li><a target="_blank" href="contacts.html">Contacts</a>
+		</ol>
+		<h2>Popaps</h2>
+		<ol class="rootpage__list">
+			<li><a target="_blank" href="home.html#popup-sing-in">Sing-in</a></li>
+			<li><a target="_blank" href="home.html#sing-up">Sing-up</a></li>
+		</ol>
+	</div>
+</body>
+
+
+</html>
